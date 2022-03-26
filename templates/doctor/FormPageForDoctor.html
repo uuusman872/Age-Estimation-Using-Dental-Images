@@ -1,0 +1,133 @@
+{% extends 'doctor/doctor_base.html' %}
+
+{% block title %} Send Suggestion {% endblock title %}
+{% block nav %}
+
+{% endblock nav %}
+
+{% block body %}
+
+        <!-- /. NAV SIDE  -->
+      <div id="page-wrapper" >
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+    
+                    <h2>Doctor Dashboard</h2>   
+                   
+                     
+                        <h4>Welcome {{user.first_name}} {{user.last_name}}, Love to see you back. </h4>
+                    </div>
+                </div>              
+                 <!-- /. ROW  -->
+                  <hr />
+               
+                
+
+{% load widget_tweaks %}
+
+<form enctype="multipart/form-data" method= "POST" >
+  {% csrf_token %}
+    
+  {% for hidden_field in form.hidden_fields %}
+    {{ hidden_field }}
+  {% endfor %}
+
+  {% if form.non_field_errors %}
+    <div class="alert alert-danger" role="alert">
+      {% for error in form.non_field_errors %}
+        {{ error }}
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% for field in form.visible_fields %}
+    <div class="form-group">
+      {{ field.label_tag }}
+
+      {% if form.is_bound %}
+        {% if field.errors %}
+          {% render_field field class="form-control is-invalid" %}
+          {% for error in field.errors %}
+            <div class="invalid-feedback">
+              {{ error }}
+            </div>
+          {% endfor %}
+        {% else %}
+          {% render_field field class="form-control is-valid" %}
+        {% endif %}
+      {% else %}
+        {% render_field field class="form-control" %}
+      {% endif %}
+
+      {% if field.help_text %}
+        <small class="form-text text-muted">{{ field.help_text }}</small>
+      {% endif %}
+    </div>
+  {% endfor %}
+
+
+{% comment %} <div clas="row">
+    <div  clas="col-md-8">
+        {% if messages %}
+            {% for message in messages %}
+                <div class= "alert text-center alert-{{ message.tags }} alert-dismissible" role="alert">
+                    <button type="button"  class="close" data-dismiss="alert" > <span aria-hidden="hidden"> &times;</span> </button>
+          
+                      <script>
+                    
+                        alert('{{ message }}');
+
+                      </script>
+                      
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</div> {% endcomment %}
+
+
+  <button type="submit"  class="btn btn-primary btn-lg btn-block myButton2">Send Report To Patient</button>
+  <button type="reset" class="btn btn-secondary btn-lg btn-block">Reset </button>
+
+</form>
+<hr />
+
+
+
+                    <!--End Advanced Tables -->
+                </div>
+            </div>
+
+
+{% if messages %}
+{% for message in messages %}        
+<script>
+
+Swal.fire({
+  title: ' Send Sucessfully!',
+  text: "Do You Want To Send Again?",
+  icon: 'success',
+  showCancelButton: true,
+  confirmButtonColor: '#7962ca',
+  cancelButtonColor: '#000',
+  confirmButtonText: 'Yes',
+  cancelButtonText: 'No',
+  customClass: 'swal2-popup',
+  backdrop: `
+    rgba(0,0,123,0.4)
+  `
+}).then((result) => {
+ if (result.isConfirmed == false) {
+    window.location.replace("{% url 'doctor_form' %}")
+   
+  } 
+})
+  
+</script>
+{% endfor %}
+{% endif %}  
+
+{% endblock body %}
+
+

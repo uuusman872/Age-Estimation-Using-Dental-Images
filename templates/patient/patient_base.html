@@ -1,0 +1,118 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,300,400,500,700,900" rel="stylesheet">
+
+    <title>{% block title %}   {% endblock title %} </title>
+<!--
+-->
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/dashboard.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
+
+
+    </head>
+    
+    <body>
+
+    <div id="wrapper">
+     
+        <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+      
+            <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                  <a href="{% url 'patient_dashboard' %}" class="logo float-left">
+                            <img src="{% static 'images/MAINLOGO.png' %}" alt="age" class="log-img-dashboard"/>
+                        </a>
+                <a class="navbar-brand" href="{% url 'patient_dashboard' %}">Age Estimation Using Dental Images</a> 
+                
+            </div>
+            <div class= "top-right" >
+                <a href="{% url 'home' %}" class="btn btn-success square-btn-adjust view-site-button">View Site</a>
+            </div>
+        </nav>   
+           <!-- /. NAV TOP  -->
+                <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse ">
+                <ul class="nav" id="main-menu">
+				<li >
+                     <img width="128px" style= " border-radius : 50%; margin-top: 30px; "src="{{request.user.profile_image.url}}" class="profile-img user-image img-responsive"/>
+     
+					</li>
+				
+					
+                    <li>
+                        <a class="active-menu text-sidebar"  href="/dashboard/patient_dashboard"><i class="fa fa-dashboard fa-2x"></i> <span>Dashboard </span></a>
+                    </li>
+                     <li  >
+                        <a class="active-menu text-sidebar" href="{% url 'doctors_list' %}"><i class="fa fa-user-md fa-2x"></i> <span>View Doctors</span> </a>
+                    </li>	
+                    <li  >
+                        <a class="active-menu text-sidebar" href="{% url 'doctor_suggestions' %}"><i class="fa fa-user-md fa-2x"></i> <span>Doctor Suggestions</span> </a>
+                    </li>
+                      <li  >
+                        <a class="active-menu text-sidebar" href="/dashboard/generate_report"><i class="fa fa-flask fa-2x"></i> <span> Forensic Report  </span></a>
+                    </li>	
+                    <li  >
+                        <a class="active-menu text-sidebar" href="{% url 'forensic_appointments' %}"><i class="fa fa-book fa-2x"></i> <span> View Reports</span> </a>
+                    </li>	
+                     <li  >
+                        <a class="active-menu text-sidebar" href="{% url 'patient_profile' %}" ><i class="fa fa-user fa-2x" aria-hidden="true"></i> <span>Update Profile </span> </a>
+                    </li>		       
+                    <li  >
+                        <a class="active-menu text-sidebar" href="{% url 'logout' %}"><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i><span>Logout  </span></a>
+                    </li>	
+                 
+                </ul>
+               
+            </div>
+            
+        </nav>  
+ 
+
+{% comment %} Body block {% endcomment %}
+{% block body %}
+
+
+{% endblock body %}
+  
+    <!-- ***** Contact Us End ***** -->
+    
+  
+    
+    <!-- jQuery -->
+    <script src="{% static 'js/jquery-2.1.0.min.js' %}"></script>
+    <!-- Bootstrap -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- Plugins -->
+    <script src="{% static 'js/jquery.metisMenu.js' %}"></script>
+    <script src="{% static 'js/dataTables/jquery.dataTables.js' %}"></script>
+    <script src="{% static 'js/dataTables/dataTables.bootstrap.js' %}"></script>
+    
+    <script>
+            $(document).ready(function () {
+                $('#dataTables-example').dataTable();
+            });
+    </script>
+    <!-- Global Init -->
+    <script src="{% static 'js/custom-dashboard.js' %}"></script>
+      <script src="{% static 'js/custom.js' %}"></script>
+	<script src="{% static 'js/graph.js' %}"></script>
+  </body>
+</html>

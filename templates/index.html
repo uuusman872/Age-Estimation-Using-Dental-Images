@@ -1,0 +1,655 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Home {% endblock title %}
+{% block nav %}
+                        <ul class="nav">
+                            <li><a href="#welcome" >Home</a></li>
+                            <li><a href="#features " >About</a></li>
+                            <li><a href="#doctors"> <b>Doctors</b> </a></li>
+                            
+                            <li><a href="#pricing-plans">Services</a></li>
+                            <li><a href="#work-process">Work Process</a></li>
+                            <li><a href="#Forensics">Forensics</a></li>
+                            <li><a href="#contact-us">Contact</a></li>
+                            
+                            {% if user.is_authenticated %}
+                            {% if user.is_doctor == True %}
+                            <li><a href="{% url 'doctor_dashboard' %}" ><b class="getstarted">Dashboard</b></a></li>  
+                            {% elif user.is_patient == True %}
+                            <li><a href="{% url 'patient_dashboard' %}" ><b class="getstarted">Dashboard</b></a></li>   
+                            {% else %}
+                            <li><a href="{% url 'forensic_dashboard' %}" ><b class="getstarted">Dashboard</b></a></li>
+                            {% endif %}
+                            <li><a href="accounts/logout" ><b class="getstarted">Logout</b></a></li>
+                            {% else %}
+                            <li><a href="accounts/login" ><b class="getstarted">Get Started</b></a></li>
+                            {% endif %}
+                        </ul>
+
+{% endblock nav %}
+
+{% block body %}  
+
+ <!--  Welcome Area Start -->
+
+    <div class="welcome-area" id="welcome">
+
+        <!-- ***** Header Text Start ***** -->
+
+        <div class="header-text">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 co l-lg-8 col-md-12 col-sm-12">
+
+                        <h1>Take the world's <br>  <strong>best quality Treatment </strong><br> with our system</h1>
+                       
+                        <a href="accounts/registration" class="main-button">Join Us Today </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+
+
+
+  <!-- ***** Features Small Start ***** -->
+<div class="container">
+<section class="section home-feature">
+<div class="row">
+
+                        <!--  * Features Small Item Start *\* -->
+  <div class=" col-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.2s">
+<div class="features-small-item">
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+{% comment %} <link rel="stylesheet" href="path-to-the-file/splide.min.css">
+<link rel="stylesheet" href="node_modules/@splidejs/splide/dist/css/splide.min.css"> {% endcomment %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
+
+<script>
+	new Splide( '.splide').mount();
+</script>
+
+<script>
+	document.addEventListener( 'DOMContentLoaded', function () {
+		new Splide( '.splide' ,{
+	autoplay    : true,
+	pauseOnHover: true,
+	type   : 'slide',
+    rewind: true,
+    pauseOnFocus: false,
+    resetProgress: false,
+    
+	
+
+
+    }).mount();
+	} );
+    
+</script>
+        <!-- ***** Header Text End ***** -->
+<div class="splide" >
+	<div class="splide__track">
+		<ul class="splide__list">
+			<li class="splide__slide" ><img width= "660px" height= "490px" src={% static 'images/doctor1.jpg' %} alt="" class="border-radius-img"></li>
+			<li class="splide__slide"><img width= "660px" height= "490px"  src={% static 'images/doctor2.jpg' %} alt="" class="border-radius-img"></li>
+			<li class="splide__slide"><img width= "660px" height= "490px"  src={% static 'images/doctor3.jpg' %} alt="" class="border-radius-img"></li>
+            <li class="splide__slide"><img width= "660px" height= "490px"  src={% static 'images/doctor4.jpg' %} alt="" class="border-radius-img"></li>
+		</ul>
+	</div>
+<div class="splide__progress">
+		<div class="splide__progress__bar">
+		</div>
+	</div>
+</div>
+                            </div>
+                            
+                        </div>
+            </div>           
+                        <!-- ***** Features Small Item End ***** -->
+        </div>
+    </section>
+    <!-- ***** Features Small End ***** -->
+
+    </div>
+    <!-- ***** Welcome Area End ***** -->
+
+
+<!-- ***** Features about Start ***** -->
+    <section class="section padding-top-70 padding-bottom-0" id="features">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-md-12 col-sm-12 align-self-center" data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
+                      <script src="https://cdn.jsdelivr.net/npm/chart.js@3.2.1/dist/chart.min.js"
+                    integrity="sha256-uVEHWRIr846/vAdLJeybWxjPNStREzOlqLMXjW/Saeo=" crossorigin="anonymous"></script>
+                <div style=" min-width: 30%;  "> <canvas id="myChart"></canvas> </div>
+                <script>
+                    var ctx = document.getElementById('myChart').getContext('2d');
+                    var myChart = new Chart(ctx, {
+                        type: 'pie',
+                        data: {
+                            labels: [
+                                '20-29',
+                                '30-39',
+                                '40-49',
+                                '50-59'
+                            ],
+                            datasets: [{
+                                label: 'My First Dataset',
+                                data: [20, 35, 25, 20],
+                                backgroundColor: [
+                                    '#1a142b',
+                                    '#331757',
+                                    '#4b2280',
+                                    '#5f4ba3 ',
+
+                                ],
+                                hoverOffset: 4,
+                                radius: "100%",
+                                rotation: 20,
+                            }]
+                        },
+                    });
+
+                </script>   
+                </div>
+                <div class="col-lg-1"></div>
+                <div class="col-lg-6 col-md-12 col-sm-12 align-self-center mobile-top-fix">
+                    <div class="left-heading">
+                        <h2 class="section-title">Let’s discuss about our Model</h2>
+                    </div>
+                    <div class="left-text">
+                        <p>The data-set contains 786 x-ray images that were collected from GitHub containing 4 classes between age 20 to 60. The data-set is divided into Train and Test Sets for model training and testing. The data-set contains 743 training images and 25 test images.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="hr"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Features about End ***** -->
+
+    <!-- ***** Features about Item Start ***** -->
+    <section class="section padding-bottom-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-12 col-sm-12 align-self-center mobile-bottom-fix">
+                    <div class="left-heading">
+                        <h2 class="section-title">Our Model help you to grow your Technology</h2>
+                    </div>
+                    <div class="left-text">
+                        <p>The model is trained using resnet50 on these images. ResNet50 is a variant of ResNet model which has 48 Convolution layers along with 1 Max Pool and 1 Average Pool layer. It has 3.8×10^9 Floating points operations. It is a widely used Res Net model</p>
+                    </div>
+                </div>
+                <div class="col-lg-1"></div>
+                <div class="col-lg-5 col-md-12 col-sm-12 align-self-center mobile-bottom-fix-big" data-scroll-reveal="enter right move 30px over 0.6s after 0.4s">
+                   <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+                <div class="graph2div" id='myDiv'>
+                    <!-- Plotly chart will be drawn inside this DIV -->
+                </div>
+
+                <script>
+
+                    var yValues = ['50-59', '40-49', '30-39', '20-29 ']
+
+                    var xValues = ['20-29', '30-39', '40-49', '50-59 ']
+
+                    var zValues = [
+                        [0, 0, 0, 6],
+                        [0, 0, 5, 1],
+                        [0, 4, 1, 1],
+                        [4, 1, 0, 1,]
+                    ];
+
+                    var colorscaleValue = [
+                        [0, '#5f4ba3'],
+                        [1, '#1a142b'],
+
+                    ];
+                    var data = [{
+                        x: xValues,
+                        y: yValues,
+                        z: zValues,
+                        type: 'heatmap',
+                        colorscale: colorscaleValue,
+                        showscale: false
+                    }];
+
+                    var layout = {
+                        title: 'Actual - Predicated Age',
+                        annotations: [],
+                        xaxis: {
+                            title: 'Predicated Age',
+                            ticks: '',
+                            side: 'bottom'
+                        },
+                        yaxis: {
+                            title: 'Actual Age',
+                            ticks: '',
+                            ticksuffix: ' ',
+                            width: 700,
+                            height: 700,
+                            autosize: false
+                        }
+                    };
+
+                    for (var i = 0; i < yValues.length; i++) {
+                        for (var j = 0; j < xValues.length; j++) {
+                            var currentValue = zValues[i][j];
+                            if (currentValue != 0.0) {
+                                var textColor = 'white';
+                            } else {
+                                var textColor = 'white'
+                            }
+                            var result = {
+                                xref: 'x1',
+                                yref: 'y1',
+                                x: xValues[j],
+                                y: yValues[i],
+                                text: zValues[i][j],
+                                font: {
+                                    family: 'Poppins, sans-serif',
+                                    size: 12,
+                                    color: 'rgb(50, 200,99)'
+                                },
+                                showarrow: false,
+                                font: {
+                                    color: textColor
+                                }
+                            };
+                            layout.annotations.push(result);
+                        }
+                    }
+
+                    Plotly.newPlot('myDiv', data, layout);
+
+
+                </script>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Features about Item End ***** -->
+
+  
+<section class="section colored" id="doctors">
+                <div class="container">
+                    <!-- ***** Section Title Start ***** -->
+             
+                        <div class="col-lg-12">
+                            <div class="center-heading">
+                                <h2 class="section-title">Doctors</h2>
+                            </div>
+                        </div>
+
+
+
+
+
+        
+{% if list is not None %}
+    {% for doc_data,doc_location in list %}
+        
+
+
+            <div class="row" style="margin-bottom : 55px">
+                <div class="col-lg-6 order-lg-1">
+                    <div class="doctor__item__pic">
+                        <img  src="{{doc_data.profile_image.url}}" alt="doc profile image" /> 
+                    </div>  
+                </div>
+            <div class="col-lg-6 order-lg-2">
+                <div class="doctor__item__text">
+                    <span></span>
+                    <h2> {{ doc_data.first_name }}  {{ doc_data.last_name }} </h2>
+                
+                    <ul>
+                        
+                        
+                        
+                        <li><i class="fa fa-sign-out"></i> Email Address : <b> {{ doc_data.email}}</b> </li>
+                        <li><i class="fa fa-sign-out"></i> Date Joined : <b> {{ doc_data.date_joined}}</b></li>
+                        <li><i class="fa fa-sign-out"></i> Last Login : <b> {{ doc_data.last_login }}</b></li>
+                     
+                
+
+                    </ul>
+                
+                </div>  
+                
+            </div>
+            </div>
+   
+    
+
+{% endfor %}
+{% else %}
+<h1>Doctors Not Found</h1>
+{% endif %}        
+                <div style="display: flex; justify-content: center">
+                    <a href="{% url 'doctors_list' %}" class="main-button "> View More Doctors </a>
+                </div>
+    </div>
+</section>
+
+</section>
+  <!-- ***** services start ***** -->
+    <section class="section" id="pricing-plans">
+        <div class="container">
+            <!-- ***** services Title Start ***** -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="center-heading">
+                        <h2 class="section-title">Our Services</h2>
+                    </div>
+                </div>
+                <div class="offset-lg-3 col-lg-6">
+                    <div class="center-text">
+                        <p>We offer Age estimation system plus many other services which you can explore here.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- ***** services Title End ***** -->
+
+
+            <div class="row">
+        
+                <!-- ***** services Title Start  ***** -->
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.2s">
+                            <div class="features-small-item features-small-item-2">
+                                <div class="icon">
+                                    <i><img src={% static 'images/dental-checkup.png' %} alt=""></i>
+                                </div>
+                              
+                                <h5 class="features-title"> Age Estimation</h5>
+                                <p>Age estimation using dental x-ray images  is very essential process to calculate the age.</p>
+                                <br>
+                               <form action="{% url 'login' %}">
+                     <button type="submit" id="form-submit" class="main-button">Explore It</button>
+                </form> 
+                            </div>
+                          
+                        </div>
+                <!--  services Title End  -->
+                   
+                
+                <!-- services Title Start   -->
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.2s">
+                    <div class="features-small-item features-small-item-2">
+                        <div class="icon">
+                            <i><img src={% static 'images/dentist.png' %} alt=""></i>
+                        </div>
+                      
+                        <h5 class="features-title"> Noise cancellation</h5>
+                        <p>Noise Cancellation is very effective way to remove umwanterd noise from images </p>
+                        <br>
+               <form action="{% url 'login' %}">
+                     <button type="submit" id="form-submit" class="main-button">Explore It</button>
+                </form>
+                    </div>
+                  
+                </div>
+        <!--  services Title End  -->
+        
+                <!-- services Title Start -->
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.2s">
+                    <div class="features-small-item features-small-item-2">
+                        <div class="icon">
+                            <i><img src={% static 'images/dental.png' %} alt=""></i>
+                        </div>
+                      
+                        <h5 class="features-title"> Color Channel</h5>
+                        <p>Convert image to the grayscale help us to bring the color channel changing processs</p>
+                        <br>
+               <form action="{% url 'login' %}">
+                     <button type="submit" id="form-submit" class="main-button">Explore It</button>
+                </form>
+                    </div>
+                </div>
+
+        <!-- * services Title End  --> 
+
+        <!-- services Title Start -->
+        <div class="col-lg-4 col-md-6 col-sm-6 col-12 mx-auto" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.2s">
+            <div class="features-small-item-2 features-small-item">
+                <div class="icon">
+                    <i><img src={% static 'images/dental.png' %} alt=""></i>
+                </div>
+              
+                <h5 class="features-title"> Generate Report</h5>
+                <p>Genrate report will help you to get the report of scanned xrays for view results in future.</p>
+                <br>
+                <form action="{% url 'login' %}">
+                     <button type="submit" id="form-submit" class="main-button">Explore It</button>
+                </form>
+            </div>
+        </div>
+
+<!-- * services Title End  --> 
+              
+            </div>
+                
+        </div>
+   
+    </section>
+    <!-- ***** services End ***** -->
+
+    <!-- ***** Home Parallax Start ***** -->
+    <section class="mini" id="work-process">
+        <div class="mini-content">
+            <div class="container">
+                <div class="row">
+                    <div class="offset-lg-3 col-lg-6">
+                        <div class="info">
+                            <h1>Work Process</h1>
+                            <p>Great work process is key to accomplish the difficult task.Our work process is one of the best to complete the solutions.   </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ***** Mini Box Start ***** -->
+                <div class="row">
+
+                    <div class="col-lg-2 col-md-3 col-sm-6 col-6">
+                        <a href="#" class="mini-box">
+                            <strong>Data Collection</strong>
+                            <span>Collection of X-ray images </span>
+                        </a>
+                    </div>
+
+                    <div class="col-lg-2 col-md-3 col-sm-6 col-6">
+                        <a href="#" class="mini-box">
+                       
+                            <strong>Data Analysis</strong>
+                            <span>Filtering and Analysing the Data</span>
+                        </a>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-6 col-6">
+                        <a href="#" class="mini-box">
+                        
+                            <strong>Data Preprocessing</strong>
+                            <span>Dimensionaly Reduction </span>
+                        </a>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-6 col-6">
+                        <a href="#" class="mini-box">
+                        
+                            <strong>Noise Cancellation</strong>
+                            <span>Feature Extraction</span>
+                        </a>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-6 col-6">
+                        <a href="#" class="mini-box">
+                    
+                            <strong>Model Evaluation</strong>
+                            <span>Model Accuracy & Traning </span>
+                        </a>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-6 col-6">
+                        <a href="#" class="mini-box">
+                            {% comment %} <i><img src="assets/images/work-process-item-01.png" alt=""></i> {% endcomment %}
+                            <strong>Testing</strong>
+                            <span>Model Testing & Model Deploying </span>
+                        </a>
+                    </div>
+                 
+                </div>
+                <!-- ***** Mini Box End ***** -->
+            </div>
+        </div>
+    </section>
+    <!-- ***** Home Parallax End ***** -->
+
+    <!-- ***** Testimonials Start ***** -->
+
+<section class="section colored" id="Forensics">
+    <div class="container">
+                    <!-- ***** Section Title Start ***** -->
+         <div class="col-lg-12">
+             <div class="center-heading">
+                <h2 class="section-title">Forensic Agents</h2>
+            </div>
+         </div>
+{% for agent in agents %} 
+    <div class="row" style="margin-bottom : 55px">
+            <div class="col-lg-6 order-lg-2">
+                <div class="doctor__item__pic">
+                    <img  src="{% static 'images/find_user.png' %}" alt="doc profile image" /> 
+                </div>  
+            </div>
+        <div class="col-lg-6 order-lg-1">
+            <div class="doctor__item__text">
+                <span></span>
+                    <h2> {{ agent.first_name }}  {{ agent.last_name }} </h2>
+                    <ul>
+                            
+                        <li><i class="fa fa-sign-out"></i> Phone Number : <b> {{ agent.phone_number}}  </b></li>
+                        <li><i class="fa fa-sign-out"></i> Email Address : <b> {{ agent.email}}</b> </li>
+                        <li><i class="fa fa-sign-out"></i> Date Joined : <b> {{ agent.date_joined}}</b></li>
+                        <li><i class="fa fa-sign-out"></i> Last Login : <b> {{ agent.last_login }}</b></li>
+                    </ul>
+               
+            </div>  
+        </div>
+    </div>
+
+               
+    
+{% endfor %}
+
+</div>
+
+ <div style="display: flex; justify-content: center">
+                    <a href="{% url 'login' %}" class="main-button ">  Need Forensic Report? </a>
+                </div> 
+</section>
+    <!-- ***** Testimonials End ***** -->
+
+  <!-- ***** Counter Parallax Start ***** -->
+    <section class="counter">
+        <div class="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-12">
+                        <div class="count-item decoration-bottom">
+                            <strong>{{all_doctors}}</strong>
+                            <span>Doctors</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12">
+                        <div class="count-item decoration-top">
+                            <strong>{{all_forensic}}</strong>
+                            <span>Forensics</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12">
+                        <div class="count-item decoration-bottom">
+                            <strong>{{all_patient}}</strong>
+                            <span>Patients</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12">
+                        <div class="count-item">
+                            <strong>{{all_users}}</strong>
+                            <span>Total Users</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  
+    <!-- ***** Counter Parallax End ***** -->   
+
+
+        <!-- ***** Contact Us Start ***** -->
+        <section class="section colored" id="contact-us">
+            <div class="container">
+                <!-- ***** Section Title Start ***** -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="center-heading">
+                            <h2 class="section-title">Talk To Us</h2>
+                        </div>
+                    </div>
+                    <div class="offset-lg-3 col-lg-6">
+                        <div class="center-text">
+                            <p>For any quries contact us for better experience.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- ***** Section Title End ***** -->
+
+                <div class="row">
+                    <!-- ***** Contact Text Start ***** -->
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <h5 class="margin-bottom-30">Keep in touch</h5>
+                        <div class="contact-text">
+                            <p>i-14/3 street#63 ,Islamabad
+                            <br>contact@gmail.com.pk</p>
+                            <p>Phone: +92315-3375533</p>
+                        </div>
+                    </div>
+                    <!-- ***** Contact Text End ***** -->
+
+                <!-- ***** Contact Form Start ***** -->
+                <div class="col-lg-8 col-md-6 col-sm-12">
+                    <div class="contact-form">
+                        <form id="contact"  enctype="multipart/form-data" method="POST">
+                        {% csrf_token %}
+                          <div class="row">
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                              <fieldset>
+                                {{form.name}}
+                              </fieldset>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                              <fieldset>
+                               {{form.email}}
+                              </fieldset>
+                            </div>
+                            <div class="col-lg-12">
+                              <fieldset>
+                                {{form.message}}
+                              </fieldset>
+                            </div>
+                            <div class="col-lg-12">
+                           
+                                <button type="submit" id="form-submit" class="main-button">Send Message</button>
+                          
+                            </div>
+                          </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- ***** Contact Form End ***** -->
+            </div>
+        </div>
+    </section>
+
+{% endblock body %}

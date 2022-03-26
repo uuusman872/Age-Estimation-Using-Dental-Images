@@ -1,0 +1,77 @@
+{% extends 'patient/patient_base.html' %}
+
+{% block title %} Dashboard {% endblock title %}
+{% block nav %}
+
+{% endblock nav %}
+
+{% block body %}
+        <!-- /. NAV SIDE  -->
+      <div id="page-wrapper" >
+            <div id="page-inner" style="margin-left: 35px;">
+                <div class="row">
+                    <div class="col-md-12">
+                  
+                    <h2>Patient Dashboard</h2> 
+                    
+                     
+                        <h4>Welcome {{user.first_name}} {{user.last_name}}, Love to see you back. </h4>
+                    </div>
+                </div>              
+                 <!-- /. ROW  -->
+                  <hr />
+ 
+
+    <div class="row">
+                <div class="col-md-12">
+                    <!-- Advanced Tables -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                             All Generated Reports By Forensic
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    <thead>
+                                        <tr>
+                                            <th>User Name</th>
+                                            <th>Date/Time</th>
+                                            <th>Description</th>
+                                            <th>View Report</th>
+                                            <th>Download Report</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% if all_appointments is not None %}
+                                    {% for rec in all_appointments %}
+                
+                                     <tr> 
+                                        <td> {{rec.username}}</td>
+                                        <td>  {{rec.date}}</td>
+                                        <td> {{rec.desc}} </td>
+                                        <td><p  title="Download"><a target="_blank" href="media/{{rec.flie}}" class="myButton" ><span class="glyphicon glyphicon-floppy-open"></span> View</a></p></td>
+                                        <td><p  title="Download"><a download href="media/{{rec.flie}}" class="myButton" ><span class="glyphicon glyphicon-cloud-download"></span>  Download</a></p></td>
+                                    </tr>
+                                   
+                                            
+                        
+                                    {% endfor %}
+                                    {% endif %}
+    
+                                      
+                                     
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                        </div>
+                    </div>
+     <!-- /. WRAPPER  -->
+
+
+{{ form.media }}
+
+
+
+{% endblock body %}

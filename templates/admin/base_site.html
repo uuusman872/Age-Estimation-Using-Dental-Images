@@ -1,0 +1,21 @@
+{% extends "admin/base.html" %}
+
+{% load static %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">
+    <a href="{% url 'admin:index' %}">
+        <img src="{% static 'images/MAINLOGO2.png' %}" height="40px" />  ||  Age Estimation System || 
+    </a>
+</h1>
+
+{% block extrastyle %}
+
+<link href="{% static 'css/admin.css' %}" rel="stylesheet" type="text/css" media="screen,projection" />
+
+{% endblock %}
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

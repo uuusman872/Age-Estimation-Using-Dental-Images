@@ -1,0 +1,44 @@
+#header {
+
+    background: #7250ce;
+  
+}
+.module h2, .module caption, .inline-group h2 {
+ 
+    background: #7250ce;
+   
+}
+
+div.breadcrumbs {
+    background: #7250cec7;
+ 
+}
+.button, input[type=submit], input[type=button], .submit-row input, a.button {
+    background: #7250ce;
+ 
+}
+
+.button.default, input[type=submit].default, .submit-row input.default {
+ 
+    background: #7250ce;
+}
+
+.selector-chosen h2 {
+    background: #7250ce !important;
+
+}
+
+a:link, a:visited {
+    color: #7250ce;
+}
+
+#branding h1, #branding h1 a:link, #branding h1 a:visited {
+    color: #ffffff;
+}
+
+.object-tools a:link, .object-tools a:visited {
+  
+  
+    background-color: #7250ce;
+  
+}

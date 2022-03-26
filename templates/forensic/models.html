@@ -1,0 +1,251 @@
+{% extends 'forensic/forensic_base.html' %}
+{% load static %}
+
+{% block title %} Models {% endblock title %}
+{% block nav %}
+
+
+
+{% endblock nav %}
+
+{% block body %}
+
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper" >
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                    <h2>Forensic Dashboard</h2>   
+                        <h4>Welcome {{user.first_name}} {{user.last_name}}, Love to see you back. </h4>
+                    </div>
+                </div>              
+                 <!-- /. ROW  -->
+                  <hr />
+         
+
+                {% comment %} USMAN WORK HERE {% endcomment %}
+
+               {% comment %} <div clas="row">
+              <div  clas="col-md-8">
+                {% if messages %}
+                  {% for message in messages %}
+                   <div class= "alert text-center alert-{{ message.tags }} alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" > <span aria-hidden="hidden"> &times;</span> </button>
+                     <h1> {{ message }}</h1>
+                      </div>
+                    {% endfor %}
+                  {% endif %}
+        </div>
+        </div> {% endcomment %}
+
+
+          
+<div class="row">
+        <div class="col-md-12">
+            <!-- Advanced Tables -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Estimate Age & Generate Report  
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                            <thead>
+                                <tr>
+                                    <th style="width: 600px;">X-RAY Image</th>
+                                    <th>SVM Model     </th>    
+                                    <th>KNN Model   </th>  
+                                    <th>RESNET50 Model   </th>
+                              
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% if AcceptedRequest is not None %}
+                                {% for m in AcceptedRequest %}
+                                    <tr class="gradeA">
+                                    
+                                    <td>                                      
+                            
+                                                                        
+                                    <img onclick="imageView('{{m.image.url}}')" class="image-uploaded" src="{{m.image.url}}" />
+                                    </td>
+                                    
+                                    
+                                    {% comment %} <td>{{patient.image.url}} /></td> {% endcomment %}
+                                    {% comment %} EStimate button here when we click on that age should be calculated from table row data and calculated data SHOULD BE SHOWN ON  {% endcomment %}
+              
+ <td> <p onclick="myFunction()" id="buttonID" type="submit" title="Accept"><a href= {% url 'svm' m.id %} class="myButton"  ><span >SVM</span></a></p></td>
+ <td> <p  onclick="myFunction()" id="buttonID" type="submit" title="Accept"><a href= {% url 'knn' m.id  %} class="myButton"  ><span >KNN</span></a></p></td>              
+  <td> <p onclick="myFunction()" id="buttonID" type="submit" title="Accept"><a href= {% url 'resnet' m.id  %} class="myButton"  ><span >RESNET50</span></a></p></td>              
+{% comment %} {% if messages %}
+  {% for message in messages %}        
+    <script>
+      var bool =  confirm('{{ message }}');
+        if(bool)
+            window.location.replace("{% url 'report' m.id %}")
+        else
+            window.location.replace("{% url 'age_estimation'  %}")
+    
+ </script>
+ {% endfor %}
+{% endif %}   {% endcomment %}
+
+
+
+            
+
+
+
+
+{% if messages %}
+  {% for message in messages %}
+ <script>
+
+Swal.fire({
+  title: 'Reduce the Image Dimensions',
+  text: "Do You Want To?",
+  showCancelButton: true,
+  confirmButtonColor: '#7962ca',
+  cancelButtonColor: '#000',
+  confirmButtonText: 'Yes, Reduce It!',
+  customClass: 'swal2-popup',
+  backdrop: `
+    rgba(0,0,123,0.4)
+  `,
+    imageUrl: "{{m.image.url}}",
+    imageHeight: "500PX",
+    width: "1000px",
+    imageAlt: 'Custom image',
+}).then((result) => {
+ if (result.isConfirmed) {
+    
+    Swal.fire({
+        title: 'Dimensions Reduction Completed!',
+        text: "Next Step Is Gray Scalling",
+        icon: 'success',
+        showCancelButton: true,
+        confirmButtonColor: '#7962ca',
+        cancelButtonColor: '#000',
+        confirmButtonText: 'Yes, Gray Scale!',
+        backdrop: `rgba(0,0,123,0.4)`,
+        imageUrl: "{{m.image.url}}",
+        imageHeight: "400PX",
+        width: "1000px",
+        }).then((result) => {
+            if(result.isConfirmed){
+                Swal.fire({
+                title: 'Gray Scalling Completed!',
+                text: "Do You Want To Estimate Age",
+                icon: 'success',
+                showCancelButton: true,
+                confirmButtonText: 'Estimate Age',
+                backdrop: `rgba(0,0,123,0.4)`,
+                confirmButtonColor: '#7962ca',
+                cancelButtonColor: '#000',
+                imageUrl: "{{m.image.url}}",
+                imageHeight: "400PX",
+                width: "1000px",
+                }).then((result) => {
+                    if(result.isConfirmed){
+                        Swal.fire({
+                                title:" {{message}}  ",
+                                icon: 'success',
+                            
+                                confirmButtonColor: '#7962ca',
+                                
+                                confirmButtonText: 'Close',
+                                customClass: 'swal2-popup',
+                                backdrop: `
+                                    rgba(0,0,123,0.4)
+                                `,
+                                imageUrl: "{{m.image.url}}",
+                                imageHeight: "400PX",
+                                width: "1000px",
+                                    imageAlt: 'Custom image',
+                        })
+                        
+                    }
+                     
+                })
+               
+            }
+            
+        })
+  } 
+})
+
+
+    
+ </script>
+     
+{% endfor %} 
+{% endif %} 
+
+                                </tr>
+                                {% endfor %}
+                                {% endif %}       
+                                   
+                            </tbody>
+                    </table>
+            </div>
+                            
+        </div>
+    </div>
+
+{% comment %} 
+<script>
+    const a = document.getElementById("buttonID");
+    const b = document.getElementById("generate_age");
+    a.addEventListener("click", () => {
+    
+        b.classList.remove("disabled-a");
+    })
+</script>      {% endcomment %}
+
+
+
+
+                {% comment %} <div class="row py-4">
+                    <div class="col-lg-6 mx-auto">w
+
+                        <!-- Upload image input-->
+                        <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
+                            <input id="upload" type="file" onchange="readURL(this);" class="form-control border-0">
+                            <label id="upload-label" for="upload" class="font-weight-bold ">Upload Image Here</label>
+                    
+                            <div class="input-group-append">
+                            
+                                <label for="upload" class="btn btn-light m-0 rounded-pill px-5"> 
+                                <i class="fa fa-cloud-upload mr-2 "></i>
+                                
+                                <bold class="text-uppercase font-weight-bold ">Choose file</bold>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Uploaded image area-->
+                        <p class="font-italic  below-image-text ">only png, jepeg and jpg allowerd to upload.</p>
+                        <div class="image-area mt-4">
+                        <img id="imageResult" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block">
+
+                        </div>
+                                            
+                    </div>
+                </div>
+
+                </div>
+                </div> {% endcomment %}
+
+
+
+
+
+
+
+
+</div>
+</div>
+           
+    
+{% endblock body %}

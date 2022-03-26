@@ -1,0 +1,108 @@
+{% extends 'doctor/doctor_base.html' %}
+
+{% block title %} Quries {% endblock title %}
+{% block nav %}
+
+{% endblock nav %}
+
+{% block body %}
+
+        <!-- /. NAV SIDE  -->
+      <div id="page-wrapper" >
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+    
+                    <h2>Doctor Dashboard</h2>   
+                   
+                     
+                        <h4>Welcome {{user.first_name}} {{user.last_name}}, Love to see you back. </h4>
+                    </div>
+                </div>              
+                 <!-- /. ROW  -->
+                  <hr />
+               
+{% if Questions is not None %}
+
+{% for question in Questions %}
+
+
+
+ <div class="container-msg">
+   
+  <img src="{{question.User.profile_image.url}}" alt="Question">
+  <span class="time-right"> Username: {{question.User}}</span>
+    <p> Question: {{question.Question}} </p>
+
+</div>
+
+{% comment %} <form enctype="multipart/form-data" action="handleMessaageForm/{{question.id}}" method="POST" >  
+{% csrf_token %}
+{{form.as_p}}
+<input type="submit" >
+</form> {% endcomment %}
+
+{% load widget_tweaks %}
+
+<form enctype="multipart/form-data" action="handleMessaageForm/{{question.id}}" method="POST" >  
+  {% csrf_token %}
+    
+  {% for hidden_field in form.hidden_fields %}
+    {{ hidden_field }}
+  {% endfor %}
+
+  {% if form.non_field_errors %}
+    <div class="alert alert-danger" role="alert">
+      {% for error in form.non_field_errors %}
+        {{ error }}
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% for field in form.visible_fields %}
+    <div class="form-group">
+      {{ field.label_tag }}
+
+      {% if form.is_bound %}
+        {% if field.errors %}
+          {% render_field field class="form-control is-invalid" %}
+          {% for error in field.errors %}
+            <div class="invalid-feedback">
+              {{ error }}
+            </div>
+          {% endfor %}
+        {% else %}
+          {% render_field field class="form-control is-valid" %}
+        {% endif %}
+      {% else %}
+        {% render_field field class="form-control" %}
+      {% endif %}
+
+      {% if field.help_text %}
+        <small class="form-text text-muted">{{ field.help_text }}</small>
+      {% endif %}
+    </div>
+  {% endfor %}
+
+  <button type="submit" class="btn btn-primary btn-lg btn-block myButton2">Send Answer</button>
+
+
+</form>
+<hr />
+
+
+
+{% endfor %}
+{% else %}
+<h1>Doctors Not Found</h1>
+{% endif %}
+
+
+
+                  
+                </div>
+            </div>
+
+{% endblock body %}
+
+

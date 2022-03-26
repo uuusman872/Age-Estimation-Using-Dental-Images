@@ -1,0 +1,46 @@
+{% extends 'patient/patient_base.html' %}
+
+
+{% block title %} Generate Report{% endblock title %}
+{% block nav %}
+
+{% endblock nav %}
+
+{% block body %}
+
+        <!-- /. NAV SIDE  -->
+       <div id="page-wrapper" >
+            <div id="page-inner" style="margin-left: 35px;">
+                <div class="row">
+                    <div class="col-md-12">
+                  
+                    <h2>Patient Dashboard</h2> 
+                    
+                     
+                        <h4>Welcome {{user.first_name}} {{user.last_name}}, Love to see you back. </h4>
+                    </div>
+                </div>              
+                 <!-- /. ROW  -->
+                  <hr />
+
+
+                {% comment %} USMAN WORK HERE {% endcomment %}
+{% load mapbox_location_field_tags %} 
+ {% location_field_includes %}
+ {% include_jquery %}
+ {{form }}
+{{ form.media }}
+{{ mymap.location }}
+
+{{ mymap.address     }}
+{% for myapp in myapp %}
+{{ myapp.location }}
+
+{{ myapp.address     }}
+{% endfor %}
+
+</div>
+</div>
+           
+    
+{% endblock body %}

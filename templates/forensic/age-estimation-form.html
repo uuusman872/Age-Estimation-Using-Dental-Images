@@ -1,0 +1,84 @@
+{% extends 'forensic/forensic_base.html' %}
+
+
+{% block title %} Age Estimation {% endblock title %}
+{% block nav %}
+
+{% endblock nav %}
+
+{% block body %}
+
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper" >
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                     <h2>Estimate Age</h2>   
+                        <h5>Welcome Jhon Deo , Love to see you back. </h5>
+                    </div>
+                </div>
+                 <!-- /. ROW  -->
+                 <hr />
+         
+
+                {% comment %} USMAN WORK HERE {% endcomment %}
+
+               
+
+                                        <form method="POST" enctype="multipart/form-data">
+                                                            {{ form.as_p }}
+                                                            {% csrf_token %}
+                                                            <input type="submit" name="Submit">
+
+                                        </form
+                                 
+
+
+
+
+
+
+
+                {% comment %} <div class="row py-4">
+                    <div class="col-lg-6 mx-auto">
+
+                        <!-- Upload image input-->
+                        <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
+                            <input id="upload" type="file" onchange="readURL(this);" class="form-control border-0">
+                            <label id="upload-label" for="upload" class="font-weight-bold ">Upload Image Here</label>
+                    
+                            <div class="input-group-append">
+                            
+                                <label for="upload" class="btn btn-light m-0 rounded-pill px-5"> 
+                                <i class="fa fa-cloud-upload mr-2 "></i>
+                                
+                                <bold class="text-uppercase font-weight-bold ">Choose file</bold>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Uploaded image area-->
+                        <p class="font-italic  below-image-text ">only png, jepeg and jpg allowerd to upload.</p>
+                        <div class="image-area mt-4">
+                        <img id="imageResult" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block">
+
+                        </div>
+                                            
+                    </div>
+                </div>
+
+                </div>
+                </div> {% endcomment %}
+
+
+
+
+
+
+
+
+</div>
+</div>
+           
+    
+{% endblock body %}

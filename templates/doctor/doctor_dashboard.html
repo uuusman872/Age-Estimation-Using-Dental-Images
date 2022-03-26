@@ -1,0 +1,182 @@
+﻿{% extends 'doctor/doctor_base.html' %}
+
+{% block title %} Dashboard {% endblock title %}
+{% block nav %}
+
+{% endblock nav %}
+
+{% block body %}
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper" >
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+    
+                    <h2>Doctor Dashboard</h2>   
+                   
+                     
+                        <h4>Welcome {{user.first_name}} {{user.last_name}}, Love to see you back. </h4>
+                    </div>
+                </div>              
+                 <!-- /. ROW  -->
+                  <hr />
+                <div class="row">
+                
+            <div class="col-md-3 col-sm-6 col-xs-6">           
+			<div class="panel panel-back noti-box">
+                <span class="icon-box bg-color-green set-icon">
+                    <i class="fa fa-bars"></i>
+                </span>
+                <div class="text-box" >
+                    <p class="main-text">{{Requests}} </p>
+                    <p class="text-muted">Patient Requests</p>
+                </div>
+             </div>
+		     </div>
+              <div class="col-md-3 col-sm-6 col-xs-6">           
+			<div class="panel panel-back noti-box">
+                <span class="icon-box bg-color-green set-icon">
+                    <i class="fa fa-bars"></i>
+                </span>
+                <div class="text-box" >
+                    <p class="main-text">{{Appointments}} </p>
+                    <p class="text-muted">Patient Appointments</p>
+                </div>
+             </div>
+		     </div>
+             <div class="col-md-3 col-sm-6 col-xs-6">           
+			<div class="panel panel-back noti-box">
+                <span class="icon-box bg-color-green set-icon">
+                    <i class="fa fa-bars"></i>
+                </span>
+                <div class="text-box" >
+                    <p class="main-text">{{Questions}} </p>
+                    <p class="text-muted">Patient Quries</p>
+                </div>
+             </div>
+		     </div>
+            <br style=" clear: both">
+
+            <div class="graph">
+
+                <script src="https://cdn.jsdelivr.net/npm/chart.js@3.2.1/dist/chart.min.js"
+                    integrity="sha256-uVEHWRIr846/vAdLJeybWxjPNStREzOlqLMXjW/Saeo=" crossorigin="anonymous"></script>
+                <div style=" min-width: 30%;  "> <canvas id="myChart"></canvas> </div>
+                <script>
+                    var ctx = document.getElementById('myChart').getContext('2d');
+                    var myChart = new Chart(ctx, {
+                        type: 'pie',
+                        data: {
+                            labels: [
+                                '20-29',
+                                '30-39',
+                                '40-49',
+                                '50-59'
+                            ],
+                            datasets: [{
+                                label: 'My First Dataset',
+                                data: [20, 35, 25, 20],
+                                backgroundColor: [
+                                    '#1a142b',
+                                    '#331757',
+                                    '#4b2280',
+                                    '#5f4ba3 ',
+
+                                ],
+                                hoverOffset: 4,
+                                radius: "100%",
+                                rotation: 20,
+                            }]
+                        },
+                    });
+
+                </script>
+                <!-- Load plotly.js into the DOM -->
+                <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+                <div class="graph2div" id='myDiv'>
+                    <!-- Plotly chart will be drawn inside this DIV -->
+                </div>
+
+                <script>
+
+                   var yValues = ['50-59', '40-49', '30-39', '20-29 ']
+
+                    var xValues = ['20-29', '30-39', '40-49', '50-59 ']
+
+                    var zValues = [
+                        [0, 0, 0, 6],
+                        [0, 0, 5, 1],
+                        [0, 4, 1, 1],
+                        [4, 1, 0, 1,]
+                    ];
+
+                    var colorscaleValue = [
+                        [0, '#5f4ba3'],
+                        [1, '#1a142b'],
+
+                    ];
+                    var data = [{
+                        x: xValues,
+                        y: yValues,
+                        z: zValues,
+                        type: 'heatmap',
+                        colorscale: colorscaleValue,
+                        showscale: false
+                    }];
+
+                    var layout = {
+                        title: 'Actual - Predicated Age',
+                        annotations: [],
+                        xaxis: {
+                            title: 'Predicated Age',
+                            ticks: '',
+                            side: 'bottom'
+                        },
+                        yaxis: {
+                            title: 'Actual Age',
+                            ticks: '',
+                            ticksuffix: ' ',
+                            width: 700,
+                            height: 700,
+                            autosize: false
+                        }
+                    };
+
+                    for (var i = 0; i < yValues.length; i++) {
+                        for (var j = 0; j < xValues.length; j++) {
+                            var currentValue = zValues[i][j];
+                            if (currentValue != 0.0) {
+                                var textColor = 'white';
+                            } else {
+                                var textColor = 'white'
+                            }
+                            var result = {
+                                xref: 'x1',
+                                yref: 'y1',
+                                x: xValues[j],
+                                y: yValues[i],
+                                text: zValues[i][j],
+                                font: {
+                                    family: 'Poppins, sans-serif',
+                                    size: 12,
+                                    color: 'rgb(50, 200,99)'
+                                },
+                                showarrow: false,
+                                font: {
+                                    color: textColor
+                                }
+                            };
+                            layout.annotations.push(result);
+                        }
+                    }
+
+                    Plotly.newPlot('myDiv', data, layout);
+
+
+                </script>
+
+
+
+            </div>
+
+{% endblock body %}

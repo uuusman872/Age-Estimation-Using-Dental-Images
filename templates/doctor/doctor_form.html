@@ -1,0 +1,130 @@
+﻿{% extends 'doctor/doctor_base.html' %}
+
+{% block title %} Appointments {% endblock title %}
+{% block nav %}
+
+{% endblock nav %}
+
+{% block body %}
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper" >
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+    
+                    <h2>Doctor Dashboard</h2>   
+                   
+                     
+                        <h4>Welcome {{user.first_name}} {{user.last_name}}, Love to see you back. </h4>
+                    </div>
+                </div>              
+                 <!-- /. ROW  -->
+                  <hr />
+
+
+               <div class="row">
+                <div class="col-md-12">
+                    <!-- Form Elements -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                         Add Patient Details Here
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    <thead>
+                                        <tr>
+                                            <th>Username</th>
+                                            <th>Full Name</th>
+                                            <th>Date/Time</th>
+                                            <th>Description</th>
+                                            
+                                            <th>File Name</th>
+                                            
+                                            <th>View Report</th>
+                                            <th>Download Report</th>
+                                            <th>Send Suggestion</th>
+                                            <th>Remove</th>
+                                          
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                     {% if DoctorRequest is not None %}
+
+                                        {% for d in DoctorRequest %}
+                                       <tr class="gradeA">
+        
+                                            {% comment %} <td>{{patient.image.url}} /></td> {% endcomment %}
+                                            <td>{{d.user}}</td>
+                                            <td>{{d.user.first_name}} {{d.user.last_name}}</td>
+                                            <td>{{d.date}}</td>
+                                            <td>{{d.desc}}</td>
+                                            <td>{{d.report.name}}</td>
+                                            
+                                            
+                                            <td><p  title="View"><a target="_blank"  href="media/{{d.report}}" class="myButton"  ><span class="glyphicon glyphicon-floppy-open"> </span>  </a></p></td>
+                                            <td><p  title="Download"><a download href="media/{{d.report}}" class="myButton" ><span class="glyphicon glyphicon-cloud-download"> </span> </a></p></td>
+                                            <td><p  title="Send Report"><a  href="FormPageForDoctor/{{d.user.id}}" class="myButton" ><span class="glyphicon glyphicon-send"> </span> </a></p></td>
+                                            <td><p  title="Delete"><a href="delete/{{d.id}}" class="myButton" ><span class="glyphicon glyphicon-remove"> </span> </a></p></td>  
+                                        </tr>
+  
+                                     {% endfor %}
+                                     {% endif %}
+                                      
+                                     
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+
+
+                           
+                        </div>
+                    </div>
+                     <!-- End Form Elements -->
+                </div>
+            </div>
+    
+
+
+
+
+
+
+
+
+
+    
+              
+    </div>
+             <!-- /. PAGE INNER  -->
+            </div>
+         <!-- /. PAGE WRAPPER  -->
+        </div>
+
+ 
+
+
+ {% if messages %}
+{% for message in messages %}        
+<script>
+
+Swal.fire({
+  position: 'top-center',
+  icon: 'error',
+  title: 'Deleted',
+  showConfirmButton: false,
+  timer: 1500,
+  backdrop: `
+    rgba(0,0,123,0.4)
+  `
+})
+  
+</script>
+{% endfor %}
+{% endif %}  
+
+{% endblock body %}
+    
+

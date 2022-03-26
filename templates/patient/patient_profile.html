@@ -1,0 +1,118 @@
+{% extends 'patient/patient_base.html' %}
+
+{% block title %} Add Patient {% endblock title %}
+{% block nav %}
+
+{% endblock nav %}
+
+{% block body %}
+
+  <!-- /. NAV SIDE  -->
+        <div id="page-wrapper" >
+            <div id="page-inner" style="margin-left: 35px;">
+                <div class="row">
+                    
+                </div>
+                 <!-- /. ROW  -->
+                 <hr />
+               <div class="row">
+                <div class="col-md-12">
+                    <!-- Form Elements -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                        Update Your Profile!
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                    
+
+<img width="300px" style="display : flex; margin : 0 auto;" src="{{request.user.profile_image.url}}" />
+         
+{% load widget_tweaks %}
+<form action="#" enctype="multipart/form-data" method= "POST" >
+  {% csrf_token %}
+    
+  {% for hidden_field in form.hidden_fields %}
+    {{ hidden_field }}
+  {% endfor %}
+
+  {% if form.non_field_errors %}
+    <div class="alert alert-danger" role="alert">
+      {% for error in form.non_field_errors %}
+        {{ error }}
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% for field in form.visible_fields %}
+    <div class="form-group">
+      {{ field.label_tag }}
+
+      {% if form.is_bound %}
+        {% if field.errors %}
+          {% render_field field class="form-control is-invalid" %}
+          {% for error in field.errors %}
+            <div class="invalid-feedback">
+              {{ error }}
+            </div>
+          {% endfor %}
+        {% else %}
+          {% render_field field class="form-control is-valid" %}
+        {% endif %}
+      {% else %}
+        {% render_field field class="form-control" %}
+      {% endif %}
+
+      {% if field.help_text %}
+        <small class="form-text text-muted">{{ field.help_text }}</small>
+      {% endif %}
+    </div>
+  {% endfor %}
+
+  <button type="submit" class="btn btn-primary btn-lg btn-block myButton2">Update Profile</button>
+  <button type="reset" class="btn btn-secondary btn-lg btn-block">Reset </button>
+
+</form>
+   
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- End Form Elements -->
+                </div>
+            </div>
+    
+              
+    </div>
+             <!-- /. PAGE INNER  -->
+            </div>
+         <!-- /. PAGE WRAPPER  -->
+        </div>
+
+ 
+{% if messages %}
+{% for message in messages %}        
+<script>
+
+Swal.fire({
+  position: 'top-center',
+  icon: 'success',
+  title: '{{message}}',
+  showConfirmButton: false,
+  timer: 1500,
+  backdrop: `
+    rgba(0,0,123,0.4)
+  `
+})
+  
+</script>
+{% endfor %}
+{% endif %}  
+
+
+{% endblock body %}
+    
+

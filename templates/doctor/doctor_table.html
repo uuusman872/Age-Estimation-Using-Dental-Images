@@ -1,0 +1,97 @@
+﻿{% extends 'doctor/doctor_base.html' %}
+
+{% block title %} Patient Request {% endblock title %}
+{% block nav %}
+
+{% endblock nav %}
+
+{% block body %}
+
+        <!-- /. NAV SIDE  -->
+      <div id="page-wrapper" >
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+    
+                    <h2>Doctor Dashboard</h2>   
+                   
+                     
+                        <h4>Welcome {{user.first_name}} {{user.last_name}}, Love to see you back. </h4>
+                    </div>
+                </div>              
+                 <!-- /. ROW  -->
+                  <hr />
+               
+
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Advanced Tables -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                             View/Modify Patients Record
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    <thead>
+                                        <tr>
+                                            <th>User Name</th>
+                                            <th>Full Name</th>
+                                            <th>Date/Time</th>
+                                            <th>Description</th>
+                                            
+                                            <th>Report</th>
+                                            <th>Accept</th>
+                                            <th>Decline</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                     {% if DoctorRequest is not None %}
+
+                                        {% for d in DoctorRequest %}
+                                       <tr class="gradeA">
+        
+                                            {% comment %} <td>{{patient.image.url}} /></td> {% endcomment %}
+                                            <td>{{d.user}}</td>
+                                            <td>{{d.user.first_name}} {{d.user.last_name}}</td>
+                                            <td>{{d.date}}</td>
+                                            <td>{{d.desc}}</td>
+                                            <td><p  title="View"><a target="_blank"  href="media/{{d.report}}" class="myButton"  ><span class="glyphicon glyphicon-floppy-open"> </span>  </a></p></td>
+                                            
+
+                                            <td><p  title="Accept"><a href="doctor_accept/{{d.id}}" class="myButton"  ><span class="glyphicon glyphicon-ok"> </span> Accept</a></p></td>
+                                            <td><p  title="Reject"><a href="doctor_reject/{{d.id}}" class="myButton" ><span class="glyphicon glyphicon-remove"> </span> Reject</a></p></td>  
+                                        </tr>
+  
+                                     {% endfor %}
+                                     {% endif %}
+                                      
+                                     
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <!--End Advanced Tables -->
+                </div>
+            </div>
+{% if messages %}
+{% for message in messages %}        
+<script>
+
+Swal.fire({
+  position: 'center',
+  title: '{{message}}',
+  showConfirmButton: false,
+  timer: 1500,
+
+})
+  
+</script>
+{% endfor %}
+{% endif %}  
+
+{% endblock body %}

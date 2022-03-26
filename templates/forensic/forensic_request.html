@@ -1,0 +1,101 @@
+{% extends 'forensic/forensic_base.html' %}
+
+{% block title %} Forensic Request {% endblock title %}
+
+{% block nav %}
+
+{% endblock nav %}
+
+{% block body %}
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper" >
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                    <h2>Forensic Dashboard</h2>   
+                        <h4>Welcome {{user.first_name}} {{user.last_name}}, Love to see you back. </h4>
+                    </div>
+                </div>              
+                 <!-- /. ROW  -->
+                  <hr />
+           
+{% comment %} <div clas="row">
+    <div  clas="col-md-8">
+        {% if messages %}
+            {% for message in messages %}
+                <div class= "alert text-center alert-{{ message.tags }} alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" > <span aria-hidden="hidden"> &times;</span> </button>
+                      {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</div> {% endcomment %}
+
+                   
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Advanced Tables -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Pending Requests
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                            <thead>
+                                <tr>
+                                    <th style="width: 600px;">X-RAY Image</th>
+                                    <th >Username</th>
+                                    <th >Full Name</th>
+                                    <th >Date/Time</th>
+                                    <th >Description</th>   
+                                    <th>Accept </th>   
+                                    <th>Reject </th>   
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% if AppointmentRequest is not None %}
+                                {% for m in AppointmentRequest %}
+                                <tr class="gradeA">
+                                    <td > <img onclick="imageView('{{m.image.url}}')" class="image-uploaded" src="{{m.image.url}}" /></td>
+                                    <td>{{m.user}}</td>
+                                    <td>{{m.user.first_name}} {{m.user.last_name}}</td>
+                                   <td>{{m.date}}</td>
+                                    
+                                    {% comment %} <td>{{patient.image.url}} /></td> {% endcomment %}
+                                    <td>{{m.desc}}</td>
+                                        <td><p  title="Accept"><a href="forensic_accept/{{m.id}}" class="myButton"  ><span class="glyphicon glyphicon-ok"> </span> Accept</a></p></td>
+                                        <td><p  title="Reject"><a href="forensic_reject/{{m.id}}" class="myButton" ><span class="glyphicon glyphicon-remove"> </span> Reject</a></p></td>  
+                                </tr>
+                                {% endfor %}
+                                {% endif %}       
+                                     
+                            </tbody>
+                    </table>
+            </div>
+                            
+        </div>
+    </div>
+     <!-- /. WRAPPER  -->
+
+
+               
+{% if messages %}
+{% for message in messages %}        
+<script>
+
+Swal.fire({
+  position: 'center',
+  title: '{{message}}',
+  showConfirmButton: false,
+  timer: 1500,
+
+})
+  
+</script>
+{% endfor %}
+{% endif %}  
+
+{% endblock body %}

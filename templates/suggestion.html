@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %} Suggestions {% endblock title %}
+{% block nav %}
+                   
+
+                        <ul class="nav">
+                             <li><a href="/index" >Home</a></li>
+                            <li><a href="/#features " >About</a></li>
+                            <li><a href="/#doctors"> <b>Doctors</b> </a></li>
+                            <li><a href="/#pricing-plans">Services</a></li>
+                            <li><a href="/#work-process">Work Process</a></li>
+                            <li><a href="/#Forensics">Forensics</a></li>
+                            <li><a href="/#contact-us">Contact Us</a></li>
+                            {% if user.is_authenticated %}
+                            <li><a href="{% url 'doctor_dashboard' %}" ><b class="getstarted">Dashboard</b></a></li>
+                            <li><a href="accounts/logout" ><b class="getstarted">Logout</b></a></li>
+                            {% else %}
+                             <li><a href="accounts/login" ><b class="getstarted">Get Started</b></a></li>
+                            {% endif %}
+    
+                        </ul>
+
+{% endblock nav %}
+{% block body %}
+
+<section class="section colored" id="contact-us">
+            <div class="container">
+                <!-- ***** Section Title Start ***** -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="center-heading">
+                            <h2 class="section-title">Doctor Suggestions</h2>
+                        </div>
+                    </div>
+
+                   
+            {% for doctor_location in doctor_location %}
+        <div class="row" style="margin:5px;">
+            <div class="col"> {{ doctor_location.location}}</div>
+            <div class="col"> {{ doctor_location.address}}</div>
+            <div class="col"><a href="{% url "change" place.id %}" class="btn btn-secondary">CHANGE</a></div>
+        </div>
+        {% endfor %}
+
+
+    </section>
+
+
+
+
+
+
+
+
+
+
+    
+{% endblock body %}
